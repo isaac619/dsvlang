@@ -27,8 +27,10 @@ Data Structure Declaration -> Structure-Type Name = [values, in, here]
   - Quirks:
     - Stacks are declared in order that they would be pushed, from left to right. For example, stack myStack = [1,2,3,4,5] would create a stack as if you were to first push 1 to the stack, then push 2, then 3 etc, creating a stack with 5 on the top and 1 on the bottom.
     - Trees and graphs are manipulated using addPair(value 1,value2) which will both create the node(s) if they do not exist and also create an edge between the two.
+
    
 **Data Structure Functions**
+
 
 append(value)
 prepend(value)
@@ -41,28 +43,44 @@ tail()
 get(index)
 addPair(nodeOne, nodeTwo)
 
+
 **Loops**
 
+
 for(initialVariable = value ; condition ; update){
+
 body statements
+
 }
 
 while(condition){
+
 body
+
 }
 
+
 **Other**
+
 
 print("text" or variable)
 
 if(condition){
+
 body
+
 }else if (condition){
+
 else if body
+
 }else{
+
 else body
+
 }
 
+
 **Visualize**
+
 End your code in ***Visualize()*** to create a functioning visualization.
 
