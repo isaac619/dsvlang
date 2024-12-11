@@ -163,6 +163,7 @@ def DSDeclaration(c):
 
 def DSManipulation(c):
     dataStructure = variableTable[c.varName] 
+    val = c.val[0] if(c.val.__class__.__name__=="list" and c.val!=[]) else c.val
     match(c.func):
         case "append":
             dataStructure.append(c.val[0])if(c.val.__class__.__name__=="list") else dataStructure.append(c.val)
@@ -170,19 +171,22 @@ def DSManipulation(c):
             dataStructure.insert(0,c.val[0])if(c.val.__class__.__name__=="list") else dataStructure.insert(0,c.val)
         case "remove": #deletes first instance of var
             for index, elem in enumerate(dataStructure):
-                if(elem == c.val):
+                if(elem == val):
                     del dataStructure[index]
                     return;
-            else:   print("No occurrences of",c.val ,"found")
+            else:   print("No occurrences of",val ,"found")
         case "removeAt":
-            del dataStructure[c.val]
+            if(c.val.__class__.__name__=="list"):
+                del dataStructure[c.val[0]]
+            else:
+                del dataStructure[c.val]
         #Stack
         case "push":
-            dataStructure.insert(len(dataStructure),c.val)
+            dataStructure.insert(len(dataStructure),val)
         case "pop":
             del dataStructure[len(dataStructure)-1]
         case "get":
-            print(dataStructure[c.val])
+            print(dataStructure[val])
         case "head":
             print(dataStructure[0])
         case "tail":
@@ -192,7 +196,7 @@ def DSManipulation(c):
         
 
 def visualize(c):
-    vis = Digraph(graph_attr={'rankdir': 'LR'})
+    vis = Digraph(graph_attr={'rankdir': 'TB'})
     vis.attr(label="Data Structure Visualization: "+programFileName, fontsize='36', fontcolor='black',rankdir='TB' )
     for dataKey in variableTable:
         dataSet = variableTable[dataKey]
@@ -220,11 +224,11 @@ def visualize(c):
                         stack.attr(label = "Stack",rankdir='TB')
                         n = "cluster_" +str(dataKey)
                         with stack.subgraph(name=n)as n:
-                            n.attr(label = str(dataKey),fontsize='19',rankdir='TR')    
+                            n.attr(label = str(dataKey),fontsize='19',rankdir='TB')    
                            
-                            for index, element in enumerate(dataSet): 
+                            for index, element in enumerate(reversed(dataSet)): 
                                 n.node(str(index)+str(dataKey),str(element)+"\n"+ hex(id(element)),shape = 'rectangle')
-                                if(index < len(dataSet)-1):    n.edge(str(index)+str(dataKey),str(index+1)+str(dataKey),contraint='false',minlen='.1',maxlen='0.1') 
+                                if(index < len(dataSet)-1):    n.edge(str(index)+str(dataKey),str(index+1)+str(dataKey),contraint='false',minlen='.1',maxlen='0.1',style='invis') 
                 case "graph":
                    with vis.subgraph(name="cluster_graph") as graph:
                         graph.attr(label = "Graph")
@@ -282,7 +286,7 @@ filename = 'file.txt'
 class systemFunction:
     def createVid(imgCount):
         fps = .3
-        video_size = (1920,1080)
+        video_size = (1920,1088)
         with imageio.get_writer('slideshow.mp4', fps=fps) as writer:
             for index,img in enumerate(range(imgCount)):
                 image = Image.open("frame" + str(index)+".png")
@@ -310,7 +314,6 @@ class systemFunction:
                 print("file not found error")
             except PermissionError:
                 print("error")
-
 
 dsv.interpret(program)
 systemFunction.createVid(imgCount)
