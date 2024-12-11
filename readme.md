@@ -10,6 +10,7 @@ Image - A PNG file is created, showing all of the data structures at the complet
 Video - An MP4 file is created, showing the progression of the creation, and manipulation of data, as well as the line of code in DSVLang that caused the change
 
 **Example Image Output**
+
 ![image](https://github.com/user-attachments/assets/b1a7cccb-c74a-4604-83e8-088952c7518b)
 
 **Example Video Output**
