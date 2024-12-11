@@ -1,4 +1,5 @@
 **Data Structure Visualizer Language**
+
 DSVLang - Intuitive and uniform declaration structure for all data structures
 Structure-Type Name = [values, go, here, for, ALL, data, structures]
 Examples:
