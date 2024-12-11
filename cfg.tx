@@ -1,0 +1,86 @@
+Program:
+    functions*=Function
+;
+
+Function:
+  Visualize | VariableAssignment | For | While | If | Print | VariableAssignment | Expression | Condition | DataStructureDeclaration | DataStructureManipulation
+;
+
+Visualize:
+  'Visualize' '('file=STRING?')'
+;
+
+Type:
+  'int' | 'float' | 'string'
+;
+
+Value:
+  INT | FLOAT | STRING | ID 
+;
+
+VariableAssignment:
+ varName=ID '=' value=AssignmentRHS
+;
+
+DataStructureDeclaration:
+dataType=DSTypes name=ID '=' '[' value=Value? (',' value=Value)* ']'
+;
+
+DataStructureManipulation:
+varName=ID '.' func=DSFunction '('val=Value? (',' val=Value)* ')' ;
+
+DSTypes:
+ "array" | "linked list" | "stack" | "graph" | "tree"
+;
+
+DSFunction:
+"append" | "removeAt" | "push" | "pop" |  "prepend" | "remove" | "head" | "tail" | "get" | "addPair"
+;
+AssignmentRHS:
+ Expression | Value 
+;
+Expression:
+  val1=Value (op=ArithmeticOperators val2=Value)+
+;
+CondType:
+Expression | Value
+;
+Condition:
+  val1=CondType op=RelationalOperators val2=CondType
+;
+ConditionList: 
+  cond=Condition ('&&' cond=Condition)*
+;
+
+ElseConditionList: 
+  cond=Condition ('&&' cond=Condition)*
+;
+If:
+'if' '(' ifCond=ConditionList ')' ifBody=Body ('else if' '(' elseCond=ElseConditionList')' elseIfBody=Body)* ('else' elseBody=Body)?
+
+;
+Body:
+'{' (functions*=Function) '}'
+;
+For:
+  'for'  '('initVar=VariableAssignment ';' cond=ConditionList ';' loopVariable=ID update=LoopUpdate ')' body=Body
+;
+
+While:
+  'while' '('cond=ConditionList')' body=Body
+;
+
+ArithmeticOperators:
+( '+' | '-' | '*' | '/' | '%')
+;
+RelationalOperators:
+  '<=' | '>=' | '<' | '>' | '=='
+;
+
+LoopUpdate:
+  '++' | '--'
+;
+
+Print:
+  'print' '(' (text=STRING | value=Value) ')'
+;
