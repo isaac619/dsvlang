@@ -1,4 +1,4 @@
-#Data Structure Visualizer Language
+# Data Structure Visualizer Language
 
 DSVLang - Intuitive and uniform declaration structure for all data structures
 Structure-Type Name = [values, go, here, for, ALL, data, structures]
@@ -10,16 +10,11 @@ DSVLang generates Two Visualizations After Code Generation.
 Image - A PNG file is created, showing all of the data structures at the completion of the code
 Video - An MP4 file is created, showing the progression of the creation, and manipulation of data, as well as the line of code in DSVLang that caused the change
 
-##Example Image Output
+## Example Image Output
 
 ![image](https://github.com/user-attachments/assets/b1a7cccb-c74a-4604-83e8-088952c7518b)
 
 
-##Example Video Output
+## Example Video Output
 
-
-https://github.com/user-attachments/assets/b6361695-bbe9-4d58-901d-2680b581ac96
-
-
-
-https://github.com/user-attachments/assets/e0f98c44-b9e9-4e69-bb4a-78dc3fce1190
+https://github.com/user-attachments/assets/92adb9be-f658-4be7-8120-3d555209b0aa
